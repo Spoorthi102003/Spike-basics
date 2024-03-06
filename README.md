@@ -127,3 +127,4 @@ For unoptimized or O0 optimization:
 For O3 optimization:
 
 ![Screenshot from 2024-03-06 20-04-02](https://github.com/Spoorthi102003/Spike-basics/assets/143829280/217c37fd-3e25-4df6-8452-8dd6eac91f06)
+

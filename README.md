@@ -91,7 +91,7 @@ riscv64-unknown-elf-objdump -d add_float.o | less
 
 To check the extensions available give the following command:
 ```
-riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o add_float.o add_float.c --print-multi-lib
+riscv64-unknown-elf-gcc --print-multi-lib
 ```
 
 ![Screenshot from 2024-03-06 19-44-13](https://github.com/Spoorthi102003/Spike-basics/assets/143829280/76a29e47-b3ad-4e9e-ac25-79e6dcb24b49)
@@ -128,3 +128,12 @@ For O3 optimization:
 
 ![Screenshot from 2024-03-06 20-04-02](https://github.com/Spoorthi102003/Spike-basics/assets/143829280/217c37fd-3e25-4df6-8452-8dd6eac91f06)
 
+# For a C code involving loop
+
+![Screenshot from 2024-03-10 16-48-03](https://github.com/Spoorthi102003/Spike-basics/assets/143829280/4ce9ba02-f27c-4c7a-8824-6e8ca612a9bb)
+
+
+![Screenshot from 2024-03-10 16-46-13](https://github.com/Spoorthi102003/Spike-basics/assets/143829280/8a1cb294-5e8b-4db0-8d61-38b85c886420)
+
+
+![Screenshot from 2024-03-10 16-48-36](https://github.com/Spoorthi102003/Spike-basics/assets/143829280/ba4c6bf4-e376-446f-bd88-6a1f6a8a71b3)

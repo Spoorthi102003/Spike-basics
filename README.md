@@ -123,3 +123,84 @@ For O3 optimization:
 
 
 ![Screenshot from 2024-03-10 16-48-36](https://github.com/Spoorthi102003/Spike-basics/assets/143829280/ba4c6bf4-e376-446f-bd88-6a1f6a8a71b3)
+
+
+To get the log or trace file, use the following command:
+```
+spike -l pk add_float.o 2>spike.txt
+
+```
+![Screenshot from 2024-03-22 13-39-17](https://github.com/Spoorthi102003/Spike-basics/assets/143829280/35f691b3-d917-451f-bcb0-eaef8ea19a51)
+
+To get objdump in .txt format,use the following command:
+```
+riscv64-unknown-elf-objdump -d add_float.o > objdump.txt
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

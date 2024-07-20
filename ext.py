@@ -1,53 +1,44 @@
+import re
+from collections import Counter
 
-def categorize_instructions(log_file):
-    # Initialize counters for each instruction category
-    instr_count = {
-        'integer': 0,
-        'mul': 0,
-        'double': 0,
-        'float': 0,
-        'atomic': 0,
-        'compressed': 0
-    }
-
-    # Open the log file for reading
+def parse_log_file(log_file):
     with open(log_file, 'r') as file:
-        # Flag to indicate if we're between two "cycle" words
-        between_cycles = False
+        lines = file.readlines()
 
-        # Iterate through each line in the log file
-        for line in file:
-            # Check if the line contains the keyword 'cycle'
-            if 'cycle' in line:
-                # Toggle the flag indicating we're between cycles
-                between_cycles = not between_cycles
-                # If this is the end of a cycle block, break the loop
-                if not between_cycles:
-                    break
-            # If we're between cycles and the line contains instructions
-            elif between_cycles and line.strip():
-                # Extract the instruction from the line
-                instr = line.split()[-2]
-                # Categorize the instruction based on keywords
-                if instr in ['mul', 'mulh', 'mulshu', 'mulhu', 'div', 'divu', 'rem', 'remu']:
+    instructions = []
+    instr_count = Counter()
+
+    between_cycles = False
+
+    for line in lines:
+        if "cycle" in line:
+            between_cycles = not between_cycles
+            continue
+        
+        if between_cycles:
+            match = re.search(r'\S+\s+\S+\s+\S+\s+\(0x[0-9a-f]+\)\s+(\S+)\s+', line)
+            if match:
+                instruction = match.group(1)
+                instructions.append(instruction)
+
+                if instruction in ['mul', 'mulh', 'mulshu', 'mulhu', 'div', 'divu', 'rem', 'remu']:
                     instr_count['mul'] += 1
-                elif instr.endswith('.d'):
+                elif instruction.endswith('.d'):
                     instr_count['double'] += 1
-                elif instr.startswith('f'):
+                elif instruction.startswith('f'):
                     instr_count['float'] += 1
-                elif instr.startswith('c.'):
+                elif instruction.startswith('c.'):
                     instr_count['compressed'] += 1
-                elif instr.startswith('lr.') or instr.startswith('sc.') or instr.startswith('amo'):
+                elif instruction.startswith('lr.') or instruction.startswith('sc.') or instruction.startswith('amo'):
                     instr_count['atomic'] += 1
                 else:
                     instr_count['integer'] += 1
 
-    # Print the count of instructions in each category
-    for category, count in instr_count.items():
-        print(f'{category}: {count}')
+    return instructions, instr_count
 
-
-# Usage example
-log_file = '/home/spoorthi-s/Desktop/profiler/spike.txt'
-categorize_instructions(log_file)
+# Example usage:
+log_file = "spike.txt"  # Provide the path to your log file
+instructions, instr_count = parse_log_file(log_file)
+# print("Instructions:", instructions)
+print("Instruction counts:", instr_count)
 

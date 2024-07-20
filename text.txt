@@ -1,0 +1,13 @@
+riscv64-unknown-elf-gcc -O3 -mabi=lp64d -march=rv64imafdc -o aha.o main.c
+
+spike -l pk aha.o 2>spike.txt
+
+riscv64-unknown-elf-objdump -d aha.o > objdump.txt
+
+
+riscv64-unknown-elf-gcc -O3 -mabi=lp64d -march=rv64imafdcv_zicsr_zifencei_zba_zbb_zbc_zve32f_zve32x_zve64d_zve64f_zve64x_zvl128b_zvl32b_zvl64b -o add.o main.c
+
+
+RISCV=/home/spoorthi-s/risc1/riscv-gnu-toolchain/installed-tools
+export PATH=$PATH:$RISCV/bin
+

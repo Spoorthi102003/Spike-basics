@@ -137,6 +137,12 @@ To get objdump in .txt format,use the following command:
 riscv64-unknown-elf-objdump -d add_float.o > objdump.txt
 ```
 
+#To check the march supported by the riscv-gcc-compiler:
+
+```
+riscv64-unknown-elf-gcc -Q --help=target | grep march
+```
+
 
 
 
